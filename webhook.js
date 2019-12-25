@@ -63,11 +63,11 @@ handler.on('push', function (event) {
   )
   switch (event.path) {
     case '/app-api':
-      runCmd('sh', ['./app1_deploy.sh', event.payload.repository.name], function (text) { console.log(text) })
+      runCmd('sh', ['./app-api.sh', event.payload.repository.name], function (text) { console.log(text) })
       break
-    case '/app2':
-      runCmd('sh', ['./app2_deploy.sh', event.payload.repository.name], function (text) { console.log(text) })
-      break
+    // case '/app2':
+    //   runCmd('sh', ['./app2_deploy.sh', event.payload.repository.name], function (text) { console.log(text) })
+    //   break
     default:
       // 处理其他
       break
