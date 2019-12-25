@@ -16,8 +16,11 @@ http.createServer(function (req, res) {
     res.statusCode = 404
     res.end('no such location')
   })
-}).listen(11009)
+}).listen(11009, () =>{
+  console.log('app start on 11009')
+})
 handler.on('error', function (err) {
+  console.log('error.......', err)
   console.error('Error:', err.message)
 })
 handler.on('*', function (event) {
@@ -27,6 +30,7 @@ handler.on('*', function (event) {
 // });
 })
 handler.on('push', function (event) {
+  console.log('push.......', event)
   console.log('Received a push event for %s to %s',
     event.payload.repository.name,
     event.payload.ref);
@@ -39,6 +43,7 @@ handler.on('push', function (event) {
   // });
 })
 handler.on('issues', function (event) {
+  console.log('push.......', event)
   console.log('Received an issue event for % action=%s: #%d %s',
     event.payload.repository.name,
     event.payload.action,
