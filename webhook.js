@@ -33,12 +33,12 @@ var createHandler = require('node-github-webhook')
 var handler = createHandler([ // 多个仓库
   {
     path: '/app-api',
-    secret: 'app-api'
+    secret: 'fangdown'
   },
-  // {
-  //   path: '/app2',
-  //   secret: 'CUSTOM'
-  // }
+  {
+    path: '/app-git123',
+    secret: 'fangdown'
+  }
 ])
 // var handler = createHandler({ path: '/webhook1', secret: 'secret1' }) // 单个仓库
 
@@ -66,9 +66,9 @@ handler.on('push', function (event) {
     case '/app-api':
       runCmd('sh', ['./app-api.sh', event.payload.repository.name], function (text) { console.log(text) })
       break
-    // case '/app2':
-    //   runCmd('sh', ['./app2_deploy.sh', event.payload.repository.name], function (text) { console.log(text) })
-    //   break
+    case '/app-git123':
+      runCmd('sh', ['./app-git123.sh', event.payload.repository.name], function (text) { console.log(text) })
+      break
     default:
       // 处理其他
       break
