@@ -64,7 +64,6 @@ handler.on('push', function (event) {
   console.log(`${event.path}`)
   switch (event.path) {
     case '/app-api':
-      console.log(`匹配app-api`)
       runCmd('sh', ['./app-api.sh', event.payload.repository.name], function (text) { console.log(text) })
       break
     // case '/app2':
