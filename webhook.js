@@ -67,7 +67,12 @@ handler.on('push', function (event) {
       runCmd('sh', ['./app-api.sh', event.payload.repository.name], function (text) { console.log(text) })
       break
     case '/app-git123':
-      runCmd('sh', ['./app-git123.sh', event.payload.repository.name], function (text) { console.log(text) })
+      const branch = event.payload.ref.replace('refs/heads/', '')
+      if(branch === 'master'){
+        runCmd('sh', ['./app-api-home.sh', event.payload.repository.name], function (text) { console.log(text) })
+      } else if(branch ==='blog'){
+        runCmd('sh', ['./app-api-blog.sh', event.payload.repository.name], function (text) { console.log(text) })
+      }
       break
     default:
       // 处理其他
