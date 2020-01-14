@@ -69,9 +69,11 @@ handler.on('push', function (event) {
     case '/app-git123':
       const branch = event.payload.ref.replace('refs/heads/', '')
       if(branch === 'master'){
-        runCmd('sh', ['./app-api-home.sh', event.payload.repository.name], function (text) { console.log(text) })
+        console.log(`执行master`)
+        runCmd('sh', ['./app-git123-home.sh', event.payload.repository.name], function (text) { console.log(text) })
       } else if(branch ==='blog'){
-        runCmd('sh', ['./app-api-blog.sh', event.payload.repository.name], function (text) { console.log(text) })
+        console.log(`执行blog`)
+        runCmd('sh', ['./app-git123-blog.sh', event.payload.repository.name], function (text) { console.log(text) })
       }
       break
     default:
