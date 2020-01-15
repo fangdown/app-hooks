@@ -38,6 +38,10 @@ var handler = createHandler([ // 多个仓库
   {
     path: '/app-git123',
     secret: 'fangdown'
+  },
+  {
+    path: '/app-admin-vue',
+    secret: 'fangdown'
   }
 ])
 // var handler = createHandler({ path: '/webhook1', secret: 'secret1' }) // 单个仓库
@@ -75,6 +79,9 @@ handler.on('push', function (event) {
         console.log(`执行blog`)
         runCmd('sh', ['./app-git123-blog.sh', event.payload.repository.name], function (text) { console.log(text) })
       }
+      break
+    case '/app-admin-vue':
+      runCmd('sh', ['./app-admin-vue.sh', event.payload.repository.name], function (text) { console.log(text) })
       break
     default:
       // 处理其他
